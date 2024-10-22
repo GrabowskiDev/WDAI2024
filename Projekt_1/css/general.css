@@ -36,6 +36,10 @@ p {
 	align-items: center;
 	height: 6rem;
 	padding: 0 3.2rem;
+	position: fixed;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(5px);
 }
 
 .header-logo-link {
@@ -54,5 +58,5 @@ p {
 
 .header-link {
 	text-decoration: none;
-	color: black;
+	color: white;
 }
