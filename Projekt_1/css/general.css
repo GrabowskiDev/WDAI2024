@@ -37,6 +37,22 @@ p {
 	color: #e60000;
 }
 
+.btn {
+	display: block;
+	text-decoration: none;
+	font-size: 2rem;
+	color: white;
+	background-color: #e60000;
+	padding: 1.6rem 3.2rem;
+	border-radius: 8px;
+	box-shadow: 4px 4px 16px -4px rgba(255, 63, 63, 0.8);
+	transition: all 0.15s;
+}
+
+.btn:hover {
+	background-color: #eb3333;
+}
+
 /* HEADER */
 .header {
 	display: flex;
@@ -72,7 +88,7 @@ p {
 /* Footer */
 .footer {
 	height: 16rem;
-	background-color: #111;
+	background-color: #170000;
 	padding: 0 8rem;
 	display: flex;
 	justify-content: space-between;

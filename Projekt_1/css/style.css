@@ -49,19 +49,30 @@
 	gap: 3.2rem;
 }
 
-.contact-button {
-	display: block;
-	text-decoration: none;
-	font-size: 2rem;
-	color: white;
-	background-color: #e60000;
-	padding: 1.6rem 3.2rem;
-	border-radius: 8px;
-	box-shadow: 4px 4px 16px -4px rgba(255, 63, 63, 0.8);
-	transition: all 0.15s;
+.gallery-section {
+	/* background-color: #2e0000; */
+	background-color: #fde6e6;
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	padding: 3.2rem;
 }
 
-.contact-button:hover {
-	/* color: black; */
-	background-color: #eb3333;
+.gallery-content {
+	padding: 16rem;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	gap: 3.2rem;
+	align-items: start;
+}
+
+.gallery-preview {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3.2rem;
+}
+
+.gallery-preview img {
+	width: 100%;
+	height: 100%;
 }
