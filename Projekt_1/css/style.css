@@ -1,0 +1,23 @@
+.hero-section {
+	background-image: url(../img/hero_example.jpg);
+	background-size: cover;
+	height: calc(100vh - 6rem);
+}
+
+.hero-content {
+	color: white;
+	height: 100%;
+	width: 100%;
+	padding: 16rem;
+	padding-right: 32rem;
+	background: linear-gradient(
+		to left,
+		rgba(0, 0, 0, 0.05),
+		rgba(0, 0, 0, 0.6),
+		rgba(0, 0, 0, 0.8)
+	);
+}
+
+.hero-content h1 {
+	margin-bottom: 3.2rem;
+}
