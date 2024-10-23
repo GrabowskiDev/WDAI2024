@@ -48,6 +48,7 @@ p {
 	border-radius: 8px;
 	box-shadow: 4px 4px 16px -4px rgba(255, 63, 63, 0.8);
 	transition: all 0.15s;
+	border: none;
 }
 
 .btn:hover {

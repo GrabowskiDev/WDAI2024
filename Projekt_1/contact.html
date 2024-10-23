@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/general.css" />
+		<link rel="stylesheet" href="css/contact.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Dokument</title>
+	</head>
+	<body>
+		<header class="header">
+			<a href="#" class="header-logo-link">
+				<img
+					class="header-logo"
+					src="img/arasaka_logo.png"
+					alt="Arasaka logo"
+				/>
+			</a>
+			<nav class="header-nav">
+				<a class="header-link" href="index.html">Home</a>
+				<a class="header-link" href="contact.html">Contact</a>
+				<a class="header-link" href="gallery.html">Gallery</a>
+			</nav>
+		</header>
+		<main>
+			<section class="contact-form-section">
+				<h1>Contact us right away!</h1>
+				<form class="contact-form">
+					<label for="email">Your Email:</label>
+					<input
+						type="text"
+						class="form-input"
+						name="email"
+						placeholder="john.kowalski@gmail.com"
+						pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+					/>
+					<label for="topic">Choose a topic:</label>
+					<select name="topic" class="form-input">
+						<option value="volvo">Question</option>
+						<option value="saab">Colaboration</option>
+						<option value="opel">Work</option>
+						<option value="opel">Other</option>
+					</select>
+					<label for="message">Your message:</label>
+					<textarea
+						class="form-input"
+						name="message"
+						rows="4"
+						cols="50"
+					>
+Just write something...</textarea
+					>
+					<input type="submit" class="btn" value="Submit" />
+				</form>
+			</section>
+		</main>
+		<footer class="footer">
+			<a href="#">
+				<img
+					class="footer-logo"
+					src="img/arasaka_logo.png"
+					alt="Arasaka logo"
+				/>
+			</a>
+			<div>
+				<p class="footer-text">
+					Based on Cyberpunk 2077 set in a universe <br />
+					created by Mike Pondsmith
+				</p>
+			</div>
+			<div class="footer-info">
+				<p>Made by: Łukasz Grabowski</p>
+				<a class="github-link" href="https://github.com/GrabowskiDev"
+					>::My Github</a
+				>
+			</div>
+		</footer>
+	</body>
+</html>
