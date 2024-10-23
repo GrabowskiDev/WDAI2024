@@ -1,5 +1,5 @@
 .hero-section {
-	background-image: url(../img/hero_example.jpg);
+	background-image: url(../img/gallery/Photo69.png);
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
@@ -114,6 +114,7 @@
 	width: 100%;
 	height: 100%;
 	transition: all 0.3s;
+	object-fit: cover;
 }
 
 .gallery-preview img:hover {
