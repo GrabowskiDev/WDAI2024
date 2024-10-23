@@ -1,0 +1,39 @@
+.gallery-section {
+	padding: 16rem 24rem;
+	/* margin: 0 auto; */
+	color: white;
+	font-size: 2.4rem;
+}
+
+h1 {
+	margin-bottom: 6.4rem;
+}
+
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 3.6rem;
+}
+
+.item {
+	position: relative;
+	overflow: hidden;
+}
+
+.item img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: all 0.2s;
+}
+
+.item img:hover {
+	transform: scale(1.1);
+}
+
+.item::after {
+	content: '';
+	display: block;
+	padding-bottom: 100%;
+}
