@@ -1,9 +1,11 @@
 const N = 84;
 const gallery = document.querySelector('.gallery');
 const imageTag = document.querySelector('#image-displayed');
+const main = document.querySelector('#main');
 
 const nextBtn = document.querySelector('#image-next');
 const prevBtn = document.querySelector('#image-prev');
+const closeBtn = document.querySelector('#image-close');
 let activeImage = 0;
 
 function displayImage() {
@@ -14,7 +16,7 @@ function displayImage() {
 for (let i = 1; i <= 84; i++) {
 	let item = document.createElement('div');
 	item.classList.add('item');
-	item.id = `Photo${i}`;
+	item.id = i;
 
 	let img = document.createElement('img');
 	img.src = `img/gallery/Photo${i}.png`;
@@ -29,15 +31,20 @@ const items = document.querySelectorAll('.item');
 items.forEach(item => {
 	item.onclick = () => {
 		console.log(item.id);
+		activeImage = Number(item.id);
+		displayImage();
+		main.classList.add('open');
 	};
 });
 
 // Picture viewer buttons
 nextBtn.addEventListener('click', () => {
+	console.log(activeImage);
 	activeImage += 1;
 	if (activeImage > N) {
 		activeImage = 1;
 	}
+	console.log(activeImage);
 	displayImage();
 });
 
@@ -47,4 +54,8 @@ prevBtn.addEventListener('click', () => {
 		activeImage = N;
 	}
 	displayImage();
+});
+
+closeBtn.addEventListener('click', () => {
+	main.classList.remove('open');
 });

@@ -39,7 +39,7 @@ h1 {
 }
 
 .image-container {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -50,6 +50,8 @@ h1 {
 	gap: 2rem;
 
 	background-color: rgba(0, 0, 0, 0.5);
+
+	visibility: hidden;
 }
 
 .image-viewer {
@@ -71,4 +73,8 @@ h1 {
 	right: -1rem;
 	width: 2.4rem;
 	height: 2.4rem;
+}
+
+.open .image-container {
+	visibility: visible;
 }
