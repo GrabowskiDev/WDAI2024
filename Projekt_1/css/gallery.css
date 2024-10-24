@@ -7,6 +7,12 @@
 
 h1 {
 	margin-bottom: 6.4rem;
+	width: 2rem;
+	transition: all 0.15s;
+}
+
+h1:hover {
+	color: #e60000;
 }
 
 .gallery {
@@ -30,6 +36,7 @@ h1 {
 
 .item img:hover {
 	transform: scale(1.1);
+	cursor: pointer;
 }
 
 .item::after {
@@ -50,7 +57,7 @@ h1 {
 	gap: 2rem;
 
 	background-color: rgba(0, 0, 0, 0.5);
-
+	backdrop-filter: blur(2px);
 	visibility: hidden;
 }
 
@@ -58,6 +65,7 @@ h1 {
 	max-width: 80%;
 	border: 6px solid #e60000;
 	background-color: #e60000;
+	border-radius: 9px;
 	position: relative;
 }
 
@@ -65,16 +73,34 @@ h1 {
 	width: 100%;
 	max-height: 80vh;
 	object-fit: cover;
+	border-radius: 9px;
 }
 
 #image-close {
 	position: absolute;
 	top: -1rem;
 	right: -1rem;
-	width: 2.4rem;
-	height: 2.4rem;
+	padding: 0.6rem 1rem;
 }
 
 .open .image-container {
 	visibility: visible;
+}
+
+.viewer-btn {
+	padding: 1rem 2rem;
+	background-color: #e60000;
+	border: 2px solid #b80000;
+	border-radius: 6px;
+	box-shadow: 4px 4px 24px 2px rgba(255, 35, 35, 0.8);
+	transition: all 0.15s;
+}
+
+.viewer-btn:hover {
+	cursor: pointer;
+	background-color: #b80000;
+}
+
+.viewer-btn:active {
+	transform: scale(0.95);
 }
