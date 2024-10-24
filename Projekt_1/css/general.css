@@ -83,6 +83,12 @@ p {
 	gap: 3.2rem;
 }
 
+.header-nav-list {
+	list-style: none;
+	display: flex;
+	gap: 3.2rem;
+}
+
 .header-link {
 	text-decoration: none;
 	color: white;
@@ -91,6 +97,30 @@ p {
 
 .header-link:hover {
 	color: #e60000;
+}
+
+.nav-button {
+	width: 4.8rem;
+	height: 4.8rem;
+	background: rgba(0, 0, 0, 0);
+	border: none;
+	display: none;
+	z-index: 20;
+}
+
+.nav-button:hover {
+	cursor: pointer;
+}
+
+.nav-button ion-icon {
+	color: white;
+	width: 100%;
+	height: 100%;
+}
+
+#hamburger-icon,
+#close-icon {
+	display: none;
 }
 
 /* Footer */
