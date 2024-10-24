@@ -101,6 +101,7 @@ p {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 2.4rem;
 }
 
 .footer-logo {

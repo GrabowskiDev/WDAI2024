@@ -39,7 +39,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 6.4rem;
 }
 
 .contact-content {
@@ -83,7 +82,7 @@
 	gap: 3.2rem;
 }
 
-.gallery-section {
+.gallery-preview-section {
 	/* background-color: #2e0000; */
 	background-color: #fde6e6;
 	display: grid;
@@ -91,7 +90,7 @@
 	padding: 3.2rem;
 }
 
-.gallery-content {
+.gallery-preview-content {
 	padding: 16rem;
 	color: black;
 	display: flex;
