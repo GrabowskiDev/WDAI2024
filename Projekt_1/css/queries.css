@@ -15,6 +15,11 @@
 	.contact-content {
 		gap: 6.4rem;
 	}
+
+	/* Contact website */
+	.contact-form-section {
+		padding: 12rem 8rem;
+	}
 }
 
 /* Below 992px */
@@ -144,6 +149,11 @@
 	.nav-open #close-icon {
 		display: initial;
 	}
+
+	/* Contact website */
+	.contact-form-section {
+		padding: 12rem 6rem;
+	}
 }
 
 /* Below 576px */
@@ -167,6 +177,27 @@
 	}
 	.footer-logo {
 		height: 3.2rem;
+	}
+
+	/* Contact website */
+	.contact-form-section {
+		padding: 12rem 0 0 0;
+	}
+
+	.contact-form-section h1 {
+		margin-left: 2rem;
+	}
+
+	.contact-form {
+		padding: 2.4rem;
+		box-shadow: none;
+		border-top: 2px solid #e60000;
+		border-bottom: 2px solid #e60000;
+		border-radius: 0;
+	}
+
+	.form-input {
+		font-size: 1.8rem;
 	}
 }
 
