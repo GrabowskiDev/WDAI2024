@@ -75,6 +75,13 @@ h1:hover {
 	object-fit: cover;
 	border-radius: 9px;
 }
+#image-prev {
+	margin-left: 1rem;
+}
+
+#image-next {
+	margin-right: 1rem;
+}
 
 #image-close {
 	position: absolute;

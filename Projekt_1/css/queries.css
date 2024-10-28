@@ -1,3 +1,10 @@
+/* Below 1600px */
+@media (max-width: 100em) {
+	.gallery-section {
+		padding: 12rem;
+	}
+}
+
 /* below 1200 px */
 @media (max-width: 75em) {
 	.footer {
@@ -20,6 +27,12 @@
 	.contact-form-section {
 		padding: 12rem 8rem;
 	}
+
+	/* gallery website */
+	.gallery {
+		grid-template-columns: repeat(5, 1fr);
+		gap: 2.4rem;
+	}
 }
 
 /* Below 992px */
@@ -29,6 +42,11 @@
 	}
 	.contact-content {
 		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* gallery website */
+	.gallery {
+		grid-template-columns: repeat(4, 1fr);
 	}
 }
 
@@ -92,6 +110,15 @@
 	.gallery-preview-content {
 		padding: 3.6rem;
 	}
+
+	/* gallery website */
+	.gallery-section {
+		padding: 12rem 8rem;
+	}
+
+	.gallery {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 /* Below 656px */
@@ -154,6 +181,11 @@
 	.contact-form-section {
 		padding: 12rem 6rem;
 	}
+
+	/* gallery website */
+	.gallery-section {
+		padding: 12rem 4.8rem;
+	}
 }
 
 /* Below 576px */
@@ -199,8 +231,14 @@
 	.form-input {
 		font-size: 1.8rem;
 	}
+
+	/* gallery website */
+	.gallery {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
+/* Below 432px */
 @media (max-width: 27em) {
 	.header {
 		height: 6rem;
@@ -257,5 +295,10 @@
 
 	.gallery-preview-content {
 		padding: 4.8rem 0;
+	}
+
+	/* gallery website */
+	.gallery-section {
+		padding: 12rem 2.4rem;
 	}
 }
