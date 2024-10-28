@@ -84,7 +84,6 @@
 
 	.hero-content {
 		padding-left: 8rem;
-		padding-top: 2.4rem;
 	}
 
 	.contact-content {
@@ -214,6 +213,7 @@
 
 	.hero-content {
 		padding: 3.2rem;
+		padding-top: 7rem;
 	}
 
 	.contact-section {
@@ -269,8 +269,7 @@
 
 	.hero-content {
 		gap: 1.6rem;
-		padding: 9.6rem 1.6rem;
-		/* padding-top: 9.6rem; */
+		padding: 7rem 1.6rem;
 		height: auto;
 	}
 
