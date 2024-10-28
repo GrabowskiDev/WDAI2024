@@ -53,6 +53,7 @@ p {
 
 .btn:hover {
 	background-color: #b80000;
+	cursor: pointer;
 }
 
 /* HEADER */

@@ -48,6 +48,24 @@
 	.gallery {
 		grid-template-columns: repeat(4, 1fr);
 	}
+	/* image viewer */
+	.image-container {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.image-viewer {
+		grid-column: 1 / 3;
+		margin-top: 8rem;
+		border-width: 3px;
+	}
+
+	#image-prev {
+		grid-row: 2;
+		align-self: start;
+	}
+	#image-next {
+		align-self: start;
+	}
 }
 
 /* Below 816px */
