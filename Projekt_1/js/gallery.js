@@ -9,7 +9,7 @@ const closeBtn = document.querySelector('#image-close');
 let activeImage = 0;
 
 function displayImage() {
-	imageTag.src = `img/gallery/Photo${activeImage}.png`;
+	imageTag.src = `img/gallery/Photo${activeImage}.jpg`;
 }
 
 //Displaying all photos in gallery
@@ -19,7 +19,7 @@ for (let i = 1; i <= 84; i++) {
 	item.id = i;
 
 	let img = document.createElement('img');
-	img.src = `img/gallery/Photo${i}.png`;
+	img.src = `img/gallery/Photo${i}.jpg`;
 	img.alt = `Picture number ${i}`;
 
 	item.appendChild(img);
