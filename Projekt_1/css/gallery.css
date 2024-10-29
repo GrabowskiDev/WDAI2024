@@ -51,9 +51,8 @@ h1:hover {
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	display: grid;
-	grid-template-columns: 8rem 1fr 8rem;
-	justify-items: center;
+	display: flex;
+	justify-content: center;
 	align-items: center;
 	gap: 2rem;
 
@@ -63,11 +62,12 @@ h1:hover {
 }
 
 .image-viewer {
-	/* max-width: 80%; */
+	max-width: 90%;
 	border: 6px solid #e60000;
 	background-color: #e60000;
 	border-radius: 9px;
 	position: relative;
+	margin-top: 7rem;
 }
 
 .image-viewer img {
@@ -77,18 +77,21 @@ h1:hover {
 	border-radius: 9px;
 }
 #image-prev {
-	margin-left: 1rem;
+	position: absolute;
+	top: 50%;
+	left: -1rem;
 }
 
 #image-next {
-	margin-right: 1rem;
+	position: absolute;
+	top: 50%;
+	right: -1rem;
 }
 
 #image-close {
 	position: absolute;
 	top: -1rem;
 	right: -1rem;
-	padding: 0.6rem 1rem;
 }
 
 .open .image-container {
@@ -96,12 +99,16 @@ h1:hover {
 }
 
 .viewer-btn {
-	padding: 1rem 2rem;
+	/* padding: 1rem 1rem; */
+	font-size: 3rem;
 	background-color: #e60000;
 	border: 2px solid #b80000;
 	border-radius: 6px;
 	box-shadow: 4px 4px 24px 2px rgba(255, 35, 35, 0.8);
 	transition: all 0.15s;
+	color: black;
+	width: 3.4rem;
+	height: 3.4rem;
 }
 
 .viewer-btn:hover {
