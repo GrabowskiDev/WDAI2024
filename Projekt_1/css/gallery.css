@@ -5,6 +5,15 @@
 	font-size: 2.4rem;
 }
 
+.gallery-section h2 {
+	margin: 12.8rem 0 4.8rem 0;
+}
+
+video {
+	width: 100%;
+	box-shadow: 4px 4px 24px 2px rgba(255, 35, 35, 0.5);
+}
+
 h1 {
 	margin-bottom: 6.4rem;
 	width: 2rem;
@@ -24,6 +33,7 @@ h1:hover {
 .item {
 	position: relative;
 	overflow: hidden;
+	box-shadow: 4px 4px 16px 0px rgba(255, 35, 35, 0.3);
 }
 
 .item img {
