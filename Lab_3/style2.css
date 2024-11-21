@@ -1,0 +1,23 @@
+.main {
+	display: flex;
+	padding: 96px;
+	justify-content: center;
+}
+
+.form {
+	background-color: #eee;
+	padding: 20px;
+	border-radius: 12px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-element {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+	gap: 20px;
+}

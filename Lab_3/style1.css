@@ -1,0 +1,21 @@
+.main {
+	padding: 120px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer-div {
+	text-align: center;
+}
+
+#time {
+	margin: 0;
+	margin-bottom: 32px;
+	font-size: 64px;
+}
+
+button {
+	padding: 12px 24px;
+	font-size: 24px;
+}

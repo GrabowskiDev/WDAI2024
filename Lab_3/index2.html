@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ćwiczenie 2</title>
+		<link rel="stylesheet" href="style2.css" />
+	</head>
+	<body>
+		<main class="main">
+			<form action="" class="form">
+				<div class="form-element">
+					<p>Minimum:</p>
+					<input
+						type="text"
+						id="min"
+						pattern="^([4-9]|[1-2][0-9]|3[0-2])$"
+						placeholder="Liczba z zakresu 4-32"
+						required
+					/>
+				</div>
+				<div class="form-element">
+					<p>Maximum:</p>
+					<input
+						type="text"
+						id="max"
+						pattern="^([4-9]|[1-5][0-9]|6[0-4])$"
+						placeholder="Liczba z zakresu min-64"
+						required
+					/>
+				</div>
+				<div class="form-element">
+					<p>Wielkie litery:</p>
+					<input type="checkbox" id="bigLetters" />
+				</div>
+				<div class="form-element">
+					<p>Specjalne znaki:</p>
+					<input type="checkbox" id="specialChar" />
+				</div>
+				<button type="submit" onclick="generate()">Generuj!</button>
+			</form>
+		</main>
+		<script src="password.js"></script>
+	</body>
+</html>
