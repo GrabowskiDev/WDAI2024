@@ -1,5 +1,6 @@
 const displayBox = document.querySelector('.display');
 const nameFilterInput = document.querySelector('#name-filter');
+nameFilterInput.value = '';
 const sortSelect = document.querySelector('#sort-select');
 
 async function fetchProducts() {
@@ -26,7 +27,7 @@ function display(PRODUCTS) {
 	let productsCopy = [];
 
 	//Name filtering
-	[...PRODUCTS].forEach(element => {
+	PRODUCTS.forEach(element => {
 		if (element.title.toUpperCase().includes(nameToFilter.toUpperCase())) {
 			productsCopy.push(element);
 		}
@@ -39,10 +40,10 @@ function display(PRODUCTS) {
 				const nameA = a.title.toUpperCase(); // ignore upper and lowercase
 				const nameB = b.title.toUpperCase(); // ignore upper and lowercase
 				if (nameA < nameB) {
-					return -1;
+					return 1;
 				}
 				if (nameA > nameB) {
-					return 1;
+					return -1;
 				}
 				return 0;
 			});
@@ -53,10 +54,10 @@ function display(PRODUCTS) {
 				const nameA = a.title.toUpperCase(); // ignore upper and lowercase
 				const nameB = b.title.toUpperCase(); // ignore upper and lowercase
 				if (nameA < nameB) {
-					return 1;
+					return -1;
 				}
 				if (nameA > nameB) {
-					return -1;
+					return 1;
 				}
 				return 0;
 			});
