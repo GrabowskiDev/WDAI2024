@@ -29,22 +29,46 @@ let zombieSpawnInterval = 5000 * Math.random();
 
 // Classes
 class Zombie {
-	constructor(scale, speed, y) {
-		this.scale = scale;
-		this.speed = speed;
-		this.y = canvas.height - (zombieImgH * scale) / 2 - y;
-	}
 	animationFrame = 0;
 	animationTime = 0;
-	x = canvas.width;
+	#x = canvas.width;
+	#scale;
+	#speed;
+	#y;
+
+	constructor(scale, speed, y) {
+		this.#scale = scale;
+		this.#speed = speed;
+		this.#y = canvas.height - (zombieImgH * scale) / 2 - y;
+	}
 
 	hasBeenHit(cursorX, cursorY) {
 		return (
-			cursorX >= this.x &&
-			cursorX <= this.x + (zombieImgW * this.scale) / 2 &&
-			cursorY >= this.y &&
-			cursorY <= this.y + (zombieImgH * this.scale) / 2
+			cursorX >= this.#x &&
+			cursorX <= this.#x + (zombieImgW * this.#scale) / 2 &&
+			cursorY >= this.#y &&
+			cursorY <= this.#y + (zombieImgH * this.#scale) / 2
 		);
+	}
+
+	moveOneStep() {
+		this.#x -= 2 * this.#speed;
+	}
+
+	getX() {
+		return this.#x;
+	}
+
+	getY() {
+		return this.#y;
+	}
+
+	getScale() {
+		return this.#scale;
+	}
+
+	getSpeed() {
+		return this.#speed;
 	}
 }
 
@@ -54,7 +78,6 @@ var cursor_y = -1;
 document.onmousemove = function (event) {
 	cursor_x = event.pageX;
 	cursor_y = event.pageY;
-	console.log(cursor_x, cursor_y);
 };
 
 function getRandomInt(min, max) {
@@ -82,13 +105,16 @@ function gameStart() {
 	// Shooting with mouseclick
 	canvas.addEventListener('click', () => {
 		let penality = true;
-		zombies.forEach(zombie => {
-			if (zombie.hasBeenHit(cursor_x, cursor_y)) {
+
+		//reversing so we prioritize zombies that are drawn last (the ones in front)
+		[...zombies].reverse().forEach(zombie => {
+			if (zombie.hasBeenHit(cursor_x, cursor_y) && penality) {
 				score += 20;
 				penality = false;
 				zombies.splice(zombies.indexOf(zombie), 1);
 			}
 		});
+		// Didn't hit any zombies, we get penality
 		if (penality) {
 			score -= 5;
 		}
@@ -98,7 +124,6 @@ function gameStart() {
 }
 
 function gameEnd() {
-	console.log('gameEnd');
 	cancelAnimationFrame(gameLoop);
 	ctx = canvas.getContext('2d');
 	ctx.fillRect(canvas.width / 2 - 200, canvas.height / 2 - 50, 400, 100);
@@ -153,7 +178,7 @@ function update(deltaTime) {
 	// Update zombies
 	zombies.forEach(zombie => {
 		// Update frame
-		zombie.animationTime += deltaTime * zombie.speed;
+		zombie.animationTime += deltaTime * zombie.getSpeed();
 		if (zombie.animationTime > 100) {
 			zombie.animationFrame += 1;
 			zombie.animationFrame %= zombieSpriteN;
@@ -161,10 +186,10 @@ function update(deltaTime) {
 		}
 
 		// Update position
-		zombie.x -= 2 * zombie.speed;
+		zombie.moveOneStep();
 
 		//listen to wall
-		if (zombie.x + (zombieImgW * zombie.scale) / 2 <= 0) {
+		if (zombie.getX() + (zombieImgW * zombie.getScale()) / 2 <= 0) {
 			zombies.splice(zombies.indexOf(zombie), 1);
 			hearts -= 1;
 		}
@@ -195,10 +220,10 @@ function render() {
 			0,
 			zombieImgW,
 			zombieImgH,
-			zombie.x,
-			zombie.y,
-			(zombieImgW / 2) * zombie.scale,
-			(zombieImgH / 2) * zombie.scale
+			zombie.getX(),
+			zombie.getY(),
+			(zombieImgW / 2) * zombie.getScale(),
+			(zombieImgH / 2) * zombie.getScale()
 		);
 	});
 
@@ -225,10 +250,10 @@ function gameLoop(timestamp) {
 
 //testing
 // let zombie = new Zombie(1, 1, canvas.height - zombieImgH / 2);
-let zombie = new Zombie(1, 1, 200);
+// let zombie = new Zombie(1, 1, 200);
 
-zombie.x = 1920;
-zombies.push(zombie);
+// zombie.x = 1920;
+// zombies.push(zombie);
 
 // Start the game loop
 gameStart();
