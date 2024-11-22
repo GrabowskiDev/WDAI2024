@@ -23,18 +23,23 @@ const zombieSpriteN = 10;
 class Game {
 	#hearts = 3;
 	#score = 0;
+	#difficultyC;
+	#difficulty;
 	#zombies = [];
 	#zombieSpawnTimer = 0;
 	#zombieSpawnInterval = 5000 * Math.random();
 
-	constructor() {}
+	constructor(difficulty) {
+		this.#difficultyC = difficulty;
+	}
 
 	start() {
 		this.#hearts = 3;
 		this.#score = 0;
+		this.#difficulty = this.#difficultyC;
 		this.#zombies = [];
 		this.#zombieSpawnTimer = 0;
-		this.#zombieSpawnInterval = 5000 * Math.random();
+		this.#zombieSpawnInterval = (5000 / this.#difficulty) * Math.random();
 
 		//Removing event listenery
 		var new_canvas = canvas.cloneNode(true);
@@ -45,6 +50,7 @@ class Game {
 		// Shooting with mouseclick
 		canvas.addEventListener('click', () => {
 			let penality = true;
+			this.#difficulty += 0.02;
 
 			//reversing so we prioritize zombies that are drawn last (the ones in front)
 			[...this.#zombies].reverse().forEach(zombie => {
@@ -79,8 +85,7 @@ class Game {
 				cursor_y >= canvas.height / 2 - 50 &&
 				cursor_y <= canvas.height / 2 + 50
 			) {
-				this.gameStart();
-				removeEventListener();
+				this.start();
 			}
 		});
 	}
@@ -102,19 +107,20 @@ class Game {
 			//listen to wall
 			if (zombie.getX() + (zombieImgW * zombie.getScale()) / 2 <= 0) {
 				this.#zombies.splice(this.#zombies.indexOf(zombie), 1);
-				this.loseHeart();
+				this.#loseHeart();
 			}
 		});
 
 		// Spawning zombies
 		this.#zombieSpawnTimer += deltaTime;
 		if (this.#zombieSpawnTimer > this.#zombieSpawnInterval) {
-			this.#zombieSpawnInterval = 5000 * Math.random();
+			this.#zombieSpawnInterval =
+				(5000 / this.#difficulty) * Math.random();
 			this.#zombieSpawnTimer = 0;
 
-			let height = getRandomInt(0, 200); //0-200 so zombie can walk on ground
-			let scale = Math.random() + 1;
-			let speed = Math.random() + 1;
+			let height = getRandomInt(0, 250); //0-250 so zombie can walk on ground
+			let scale = Math.random() + 1 / Math.max(this.#difficulty / 2.5, 1);
+			let speed = Math.random() + this.#difficulty;
 			this.#zombies.push(new Zombie(scale, speed, height));
 		}
 	}
@@ -122,14 +128,16 @@ class Game {
 	checkForEnd() {
 		if (this.#hearts <= 0) {
 			this.#end();
+			return true;
 		}
+		return false;
 	}
 
 	#modifyScore(value) {
 		this.#score += value;
 	}
 
-	loseHeart() {
+	#loseHeart() {
 		this.#hearts -= 1;
 	}
 
@@ -269,18 +277,13 @@ function gameLoop(timestamp) {
 	game.update(deltaTime);
 	render();
 
-	game.checkForEnd();
+	if (game.checkForEnd()) {
+		return;
+	}
 
 	requestAnimationFrame(gameLoop);
 }
 
-//testing
-// let zombie = new Zombie(1, 1, canvas.height - zombieImgH / 2);
-// let zombie = new Zombie(1, 1, 200);
-
-// zombie.x = 1920;
-// zombies.push(zombie);
-
 // Start the game loop
-let game = new Game();
+let game = new Game(1);
 game.start();
