@@ -1,4 +1,4 @@
-const canvas = document.querySelector('#gameCanvas');
+let canvas = document.querySelector('#gameCanvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -54,6 +54,7 @@ var cursor_y = -1;
 document.onmousemove = function (event) {
 	cursor_x = event.pageX;
 	cursor_y = event.pageY;
+	console.log(cursor_x, cursor_y);
 };
 
 function getRandomInt(min, max) {
@@ -64,6 +65,59 @@ function getRandomInt(min, max) {
 
 function getRandomArbitrary(min, max) {
 	return Math.random() * (max - min) + min;
+}
+
+function gameStart() {
+	hearts = 3;
+	score = 0;
+	zombies = [];
+	zombieSpawnTimer = 0;
+	zombieSpawnInterval = 5000 * Math.random();
+
+	var new_canvas = canvas.cloneNode(true);
+	canvas.parentNode.replaceChild(new_canvas, canvas);
+	canvas = new_canvas;
+	canvas.classList.remove('allowMouse');
+
+	// Shooting with mouseclick
+	canvas.addEventListener('click', () => {
+		let penality = true;
+		zombies.forEach(zombie => {
+			if (zombie.hasBeenHit(cursor_x, cursor_y)) {
+				score += 20;
+				penality = false;
+				zombies.splice(zombies.indexOf(zombie), 1);
+			}
+		});
+		if (penality) {
+			score -= 5;
+		}
+	});
+
+	requestAnimationFrame(gameLoop);
+}
+
+function gameEnd() {
+	console.log('gameEnd');
+	cancelAnimationFrame(gameLoop);
+	ctx = canvas.getContext('2d');
+	ctx.fillRect(canvas.width / 2 - 200, canvas.height / 2 - 50, 400, 100);
+	ctx.font = '64px Arial';
+	ctx.fillStyle = 'Black';
+	ctx.fillText('Restart', canvas.width / 2 - 100, canvas.height / 2 + 21);
+	canvas.classList.add('allowMouse');
+
+	canvas.addEventListener('click', () => {
+		if (
+			cursor_x >= canvas.width / 2 - 200 &&
+			cursor_x <= canvas.width / 2 + 200 &&
+			cursor_y >= canvas.height / 2 - 50 &&
+			cursor_y <= canvas.height / 2 + 50
+		) {
+			gameStart();
+			removeEventListener();
+		}
+	});
 }
 
 function renderUi() {
@@ -82,10 +136,13 @@ function renderUi() {
 	ctx.font = '64px Arial';
 	ctx.fillStyle = 'white';
 	let scoreString = '';
+	if (score < 0) {
+		scoreString = '-';
+	}
 	for (let i = 0; i < 5 - score.toString().length; i++) {
 		scoreString += '0';
 	}
-	scoreString += score.toString();
+	scoreString += Math.abs(score).toString();
 	ctx.fillText(scoreString, canvas.width - 190, 64);
 
 	// cursor
@@ -124,11 +181,6 @@ function update(deltaTime) {
 		speed = Math.random() + 1;
 		zombies.push(new Zombie(scale, speed, height));
 	}
-
-	//Game end
-	if (hearts == 0) {
-		// gameEnd();
-	}
 }
 
 function render() {
@@ -162,6 +214,12 @@ function gameLoop(timestamp) {
 	update(deltaTime);
 	render();
 
+	//Game end
+	if (hearts == 0) {
+		gameEnd();
+		return;
+	}
+
 	requestAnimationFrame(gameLoop);
 }
 
@@ -172,20 +230,5 @@ let zombie = new Zombie(1, 1, 200);
 zombie.x = 1920;
 zombies.push(zombie);
 
-// Shooting with mouseclick
-canvas.addEventListener('click', () => {
-	let penality = true;
-	zombies.forEach(zombie => {
-		if (zombie.hasBeenHit(cursor_x, cursor_y)) {
-			score += 20;
-			penality = false;
-			zombies.splice(zombies.indexOf(zombie), 1);
-		}
-	});
-	if (penality) {
-		score -= 5;
-	}
-});
-
 // Start the game loop
-requestAnimationFrame(gameLoop);
+gameStart();

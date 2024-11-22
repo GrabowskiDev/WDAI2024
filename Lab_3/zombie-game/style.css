@@ -7,3 +7,7 @@ body {
 canvas {
 	cursor: none;
 }
+
+.allowMouse {
+	cursor: default !important;
+}
