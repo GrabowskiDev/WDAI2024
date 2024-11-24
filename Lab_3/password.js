@@ -134,7 +134,9 @@ function generate() {
 	let big = bigLettersCheckbox.checked;
 
 	if (max < min) {
-		alert('Maximum value must be greater than minimal value!');
+		alert(
+			'Error: Maksymalna wartość musi być większa od minimalnej wartości'
+		);
 		return;
 	}
 

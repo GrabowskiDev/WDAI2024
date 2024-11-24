@@ -1,1 +1,0 @@
-zadanie domowe - zrobić napewno canvasa (przy strzelaniu porównujemy pozycje myszki + pozycje i rozmiary zombiaka)

@@ -8,14 +8,14 @@
 	</head>
 	<body>
 		<main class="main">
-			<form action="" class="form">
+			<form action="" class="form" onsubmit="return generate()">
 				<div class="form-element">
 					<p>Minimum:</p>
 					<input
 						type="text"
 						id="min"
-						pattern="^([4-9]|[1-2][0-9]|3[0-2])$"
-						placeholder="Liczba z zakresu 4-32"
+						pattern="[1-9]|[1-9][0-9]+"
+						placeholder="Minimum znaków"
 						required
 					/>
 				</div>
@@ -24,8 +24,8 @@
 					<input
 						type="text"
 						id="max"
-						pattern="^([4-9]|[1-5][0-9]|6[0-4])$"
-						placeholder="Liczba z zakresu min-64"
+						pattern="[1-9]|[1-9][0-9]+"
+						placeholder="(większe od Minimum)"
 						required
 					/>
 				</div>
@@ -37,7 +37,7 @@
 					<p>Specjalne znaki:</p>
 					<input type="checkbox" id="specialChar" />
 				</div>
-				<button type="submit" onclick="generate()">Generuj!</button>
+				<button type="submit">Generuj!</button>
 			</form>
 		</main>
 		<script src="password.js"></script>
