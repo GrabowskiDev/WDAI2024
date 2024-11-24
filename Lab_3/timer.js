@@ -18,12 +18,12 @@ function updateDisplay() {
 
 	if (minutes > 0) {
 		if (seconds >= 10) {
-			timeDisplay.textContent = `${minutes}:${seconds}`;
+			timeDisplay.textContent = `${minutes}m ${seconds}s`;
 		} else {
-			timeDisplay.textContent = `${minutes}:0${seconds}`;
+			timeDisplay.textContent = `${minutes}m 0${seconds}s`;
 		}
 	} else {
-		timeDisplay.textContent = `${seconds}`;
+		timeDisplay.textContent = `${seconds}s`;
 	}
 }
 
