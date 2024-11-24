@@ -14,6 +14,9 @@ emptyHeart.src = 'assets/empty_heart.png';
 let cursorImg = new Image();
 cursorImg.src = 'assets/aim.png';
 
+let audio = new Audio();
+audio.src = 'assets/sad-music.mp3';
+
 let zombieImg = new Image();
 zombieImg.src = 'assets/walkingdead.png';
 const zombieImgW = 200;
@@ -23,6 +26,7 @@ const zombieSpriteN = 10;
 class Game {
 	#hearts = 3;
 	#score = 0;
+	#highscore = 0;
 	#difficultyC;
 	#difficulty;
 	#zombies = [];
@@ -34,6 +38,8 @@ class Game {
 	}
 
 	start() {
+		audio.pause();
+		audio.currentTime = 0;
 		this.#hearts = 3;
 		this.#score = 0;
 		this.#difficulty = this.#difficultyC;
@@ -71,6 +77,8 @@ class Game {
 
 	#end() {
 		cancelAnimationFrame(gameLoop);
+		audio.play();
+
 		ctx = canvas.getContext('2d');
 		ctx.fillRect(canvas.width / 2 - 200, canvas.height / 2 - 50, 400, 100);
 		ctx.font = '64px Arial';
@@ -119,10 +127,19 @@ class Game {
 			this.#zombieSpawnTimer = 0;
 
 			let height = getRandomInt(0, 250); //0-250 so zombie can walk on ground
-			let scale = Math.random() + 1 / Math.max(this.#difficulty / 2.5, 1);
-			let speed = Math.random() + this.#difficulty;
+			let scale = Math.min(
+				Math.max(
+					Math.random() + 1 / Math.max(this.#difficulty / 2.5, 1),
+					0.3
+				),
+				5
+			);
+			let speed = 1 + Math.random() * 2 * this.#difficulty;
 			this.#zombies.push(new Zombie(scale, speed, height));
 		}
+
+		// Sort zombies
+		this.#sortZombies();
 	}
 
 	checkForEnd() {
@@ -135,6 +152,9 @@ class Game {
 
 	#modifyScore(value) {
 		this.#score += value;
+		if (this.#score > this.#highscore) {
+			this.#highscore = this.#score;
+		}
 	}
 
 	#loseHeart() {
@@ -149,8 +169,21 @@ class Game {
 		return this.#score;
 	}
 
+	getHighScore() {
+		return this.#highscore;
+	}
+
 	getZombies() {
 		return [...this.#zombies];
+	}
+
+	#sortZombies() {
+		this.#zombies.sort((a, b) => {
+			if (a.getFeetY() > b.getFeetY()) {
+				return -1;
+			}
+			return 1;
+		});
 	}
 }
 
@@ -162,10 +195,12 @@ class Zombie {
 	#scale;
 	#speed;
 	#y;
+	#feetY;
 
 	constructor(scale, speed, y) {
 		this.#scale = scale;
 		this.#speed = speed;
+		this.#feetY = y;
 		this.#y = canvas.height - (zombieImgH * scale) / 2 - y;
 	}
 
@@ -179,7 +214,7 @@ class Zombie {
 	}
 
 	moveOneStep() {
-		this.#x -= 2 * this.#speed;
+		this.#x -= this.#speed;
 	}
 
 	getX() {
@@ -188,6 +223,10 @@ class Zombie {
 
 	getY() {
 		return this.#y;
+	}
+
+	getFeetY() {
+		return this.#feetY;
 	}
 
 	getScale() {
@@ -240,7 +279,15 @@ function renderUi() {
 		scoreString += '0';
 	}
 	scoreString += Math.abs(game.getScore()).toString();
-	ctx.fillText(scoreString, canvas.width - 190, 64);
+	ctx.fillText(scoreString, canvas.width - 190, 128);
+
+	//Highscore
+	let highScoreString = 'Highscore: ';
+	for (let i = 0; i < 5 - game.getHighScore().toString().length; i++) {
+		highScoreString += '0';
+	}
+	highScoreString += Math.abs(game.getHighScore()).toString();
+	ctx.fillText(highScoreString, canvas.width - 510, 64);
 
 	// cursor
 	ctx.drawImage(cursorImg, cursor_x - 64, cursor_y - 64, 128, 128);
@@ -285,5 +332,8 @@ function gameLoop(timestamp) {
 }
 
 // Start the game loop
-let game = new Game(1);
+let diff = Number(
+	prompt('Set starting difficulty (default is 1, higher means harder)', 1)
+);
+let game = new Game(diff);
 game.start();
