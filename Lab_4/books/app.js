@@ -2,6 +2,8 @@ const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = 3000;
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'NotSoSecretKey123';
 
 app.use(express.json());
 
@@ -10,7 +12,7 @@ const sequelize = new Sequelize({
 	storage: 'database.db',
 });
 
-// Import the Book model
+// Book model
 const Book = sequelize.define(
 	'Book',
 	{
@@ -43,6 +45,20 @@ app.listen(PORT, () => {
 	console.log(`it's alive on http://localhost:${PORT}`);
 });
 
+function verifyToken(req, res, next) {
+	const token = req.header('Authorization');
+	if (!token)
+		return res.status(403).json('A token is required for authentication');
+	try {
+		const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY);
+		req.id = decoded.id;
+		req.email = decoded.email;
+		next();
+	} catch (error) {
+		res.status(401).json('Invalid token');
+	}
+}
+
 //Get all books
 app.get('/api/books', (req, res) => {
 	Book.findAll()
@@ -70,7 +86,7 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 //Add book
-app.post('/api/books', (req, res) => {
+app.post('/api/books', verifyToken, (req, res) => {
 	Book.create(req.body)
 		.then(book => {
 			res.status(201).json(book);
@@ -81,7 +97,7 @@ app.post('/api/books', (req, res) => {
 });
 
 //Delete book
-app.delete('/api/books/:id', (req, res) => {
+app.delete('/api/books/:id', verifyToken, (req, res) => {
 	Book.destroy({
 		where: {
 			id: req.params.id,

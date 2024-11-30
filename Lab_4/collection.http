@@ -1,0 +1,51 @@
+@id=2
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTkwMDYyLCJleHAiOjE3MzI5OTM2NjJ9.sLBXulDunsC_n5gdsAw45ExisWESZKVOYpcMh1shid0
+
+####################################
+# Register user
+####################################
+POST http://127.0.0.1:3001/api/register
+Content-Type: application/json
+
+{
+	"email": "test@test.com",
+	"password": "admin"
+}
+
+####################################
+# Login user
+####################################
+POST http://127.0.0.1:3001/api/login
+Content-Type: application/json
+
+{
+	"email": "test@test.com",
+	"password": "admin"
+}
+
+
+####################################
+# Get all books
+####################################
+GET http://127.0.0.1:3000/api/books
+
+
+####################################
+# Add book
+####################################
+POST http://127.0.0.1:3000/api/books
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "The Hobbit 2",
+  "author": "J.R.R. Tolkien",
+  "publishedYear": 1938
+}
+
+####################################
+# Delete book
+####################################
+DELETE  http://127.0.0.1:3000/api/books/6
+
+
