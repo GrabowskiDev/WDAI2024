@@ -48,37 +48,38 @@ app.listen(PORT, () => {
 });
 
 // Register
-app.post('/api/register', (req, res) => {
-	User.create({ ...req.body, password: hashPassword(req.body.password) })
-		.then(user => {
-			res.status(201).json(user.id);
-		})
-		.catch(error => {
-			res.status(500).send('Internal Server Error');
+app.post('/api/register', async (req, res) => {
+	try {
+		const user = await User.create({
+			...req.body,
+			password: hashPassword(req.body.password),
 		});
+		res.status(201).json(user.id);
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });
 
 // Login
-app.post('/api/login', (req, res) => {
-	User.findOne({
-		where: {
-			email: req.body.email,
-			password: hashPassword(req.body.password),
-		},
-	})
-		.then(user => {
-			if (user) {
-				const token = jwt.sign(
-					{ id: user.id, email: user.email },
-					SECRET_KEY,
-					{ expiresIn: '1h' }
-				);
-				res.status(200).json(token);
-			} else {
-				res.status(401).send('Unauthorized');
-			}
-		})
-		.catch(error => {
-			res.status(500).send('Internal Server Error');
+app.post('/api/login', async (req, res) => {
+	try {
+		const user = await User.findOne({
+			where: {
+				email: req.body.email,
+				password: hashPassword(req.body.password),
+			},
 		});
+		if (user) {
+			const token = jwt.sign(
+				{ id: user.id, email: user.email },
+				SECRET_KEY,
+				{ expiresIn: '1h' }
+			);
+			res.status(200).json(token);
+		} else {
+			res.status(401).send('Unauthorized');
+		}
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });

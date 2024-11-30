@@ -51,7 +51,7 @@ function verifyToken(req, res, next) {
 		return res.status(403).json('A token is required for authentication');
 	try {
 		const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY);
-		req.id = decoded.id;
+		req.userId = decoded.id;
 		req.email = decoded.email;
 		next();
 	} catch (error) {
@@ -60,57 +60,54 @@ function verifyToken(req, res, next) {
 }
 
 //Get all books
-app.get('/api/books', (req, res) => {
-	Book.findAll()
-		.then(books => {
-			res.status(200).json(books);
-		})
-		.catch(err => {
-			res.status(500).send('Internal Server Error');
-		});
+app.get('/api/books', async (req, res) => {
+	try {
+		const books = await Book.findAll();
+		res.status(200).json(books);
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });
 
 //Get book by id
-app.get('/api/books/:id', (req, res) => {
-	Book.findByPk(req.params.id)
-		.then(book => {
-			if (book) {
-				res.status(200).json(book);
-			} else {
-				res.status(404).send('Book not found');
-			}
-		})
-		.catch(error => {
-			res.status(500).send('Internal Server Error');
-		});
+app.get('/api/books/:id', async (req, res) => {
+	try {
+		const book = await Book.findByPk(req.params.id);
+		if (book) {
+			res.status(200).json(book);
+		} else {
+			res.status(404).send('Book not found');
+		}
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });
 
 //Add book
-app.post('/api/books', verifyToken, (req, res) => {
-	Book.create(req.body)
-		.then(book => {
-			res.status(201).json(book);
-		})
-		.catch(error => {
-			res.status(500).send('Internal Server Error');
-		});
+app.post('/api/books', verifyToken, async (req, res) => {
+	try {
+		// req.status(201).send(req.body);
+		const book = await Book.create(req.body);
+		res.status(201).json(req.email);
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });
 
 //Delete book
-app.delete('/api/books/:id', verifyToken, (req, res) => {
-	Book.destroy({
-		where: {
-			id: req.params.id,
-		},
-	})
-		.then(deleted => {
-			if (deleted) {
-				res.status(200).json({ deleted: true });
-			} else {
-				res.status(404).send('Book not found');
-			}
-		})
-		.catch(error => {
-			res.status(500).send('Internal Server Error');
+app.delete('/api/books/:id', verifyToken, async (req, res) => {
+	try {
+		const deleted = await Book.destroy({
+			where: {
+				id: req.params.id,
+			},
 		});
+		if (deleted) {
+			res.status(200).send('Book deleted');
+		} else {
+			res.status(404).send('Book not found');
+		}
+	} catch (error) {
+		res.status(500).send('Internal Server Error');
+	}
 });

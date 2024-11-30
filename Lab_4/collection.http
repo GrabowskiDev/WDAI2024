@@ -1,5 +1,5 @@
 @id=2
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTkwMDYyLCJleHAiOjE3MzI5OTM2NjJ9.sLBXulDunsC_n5gdsAw45ExisWESZKVOYpcMh1shid0
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTk2Njc2LCJleHAiOjE3MzMwMDAyNzZ9.Bko_7gJqd0YBldyBMcyJW_xRkPeNxWzhbn37jXurPek
 
 ####################################
 # Register user
@@ -8,7 +8,7 @@ POST http://127.0.0.1:3001/api/register
 Content-Type: application/json
 
 {
-	"email": "test@test.com",
+	"email": "test20@test.com",
 	"password": "admin"
 }
 
@@ -19,16 +19,19 @@ POST http://127.0.0.1:3001/api/login
 Content-Type: application/json
 
 {
-	"email": "test@test.com",
+	"email": "test20@test.com",
 	"password": "admin"
 }
-
 
 ####################################
 # Get all books
 ####################################
 GET http://127.0.0.1:3000/api/books
 
+####################################
+# Get book with id
+####################################
+GET http://127.0.0.1:3000/api/books/4
 
 ####################################
 # Add book
@@ -38,7 +41,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "title": "The Hobbit 2",
+  "title": "The Hobbit 3",
   "author": "J.R.R. Tolkien",
   "publishedYear": 1938
 }
