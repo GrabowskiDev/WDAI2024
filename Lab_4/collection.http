@@ -1,5 +1,8 @@
 @id=2
 @token= {{login.response.body.token}}
+@userId= {{login.response.body.id}}
+
+
 
 ####################################
 # Register user
@@ -8,7 +11,7 @@ POST http://127.0.0.1:3001/api/register
 Content-Type: application/json
 
 {
-	"email": "test@test.com",
+	"email": "test2@test.com",
 	"password": "admin"
 }
 
@@ -20,9 +23,10 @@ POST http://127.0.0.1:3001/api/login
 Content-Type: application/json
 
 {
-	"email": "test@test.com",
+	"email": "test2@test.com",
 	"password": "admin"
 }
+
 
 
 ####################################
@@ -33,7 +37,7 @@ GET http://127.0.0.1:3000/api/books
 ####################################
 # Get book with id
 ####################################
-GET http://127.0.0.1:3000/api/books/4
+GET http://127.0.0.1:3000/api/books/33
 
 ####################################
 # Add book
@@ -55,3 +59,39 @@ DELETE  http://127.0.0.1:3000/api/books/11
 Authorization: Bearer {{token}}
 
 
+
+####################################
+# Get all orders from user
+####################################
+GET http://127.0.0.1:3002/api/orders/{{userId}}
+Authorization: Bearer {{token}}
+
+####################################
+# Add order
+####################################
+POST http://127.0.0.1:3002/api/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"bookId": 10,
+	"count": 1
+}
+
+####################################
+# Delete order
+####################################
+DELETE http://127.0.0.1:3002/api/orders/6
+Authorization: Bearer {{token}}
+
+####################################
+# Patch order
+####################################
+PATCH http://127.0.0.1:3002/api/orders/7
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"bookId": 3,
+	"count": 3
+}
