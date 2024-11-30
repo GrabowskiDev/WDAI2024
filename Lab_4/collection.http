@@ -1,5 +1,5 @@
 @id=2
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTk4NDE4LCJleHAiOjE3MzMwMDIwMTh9.rrlYpm3qkbHXc4riOF6738_s2kuacSj3GFHw2vN3yV8
+@token= {{login.response.body.token}}
 
 ####################################
 # Register user
@@ -15,6 +15,7 @@ Content-Type: application/json
 ####################################
 # Login user
 ####################################
+# @name login
 POST http://127.0.0.1:3001/api/login
 Content-Type: application/json
 
@@ -22,6 +23,7 @@ Content-Type: application/json
 	"email": "test@test.com",
 	"password": "admin"
 }
+
 
 ####################################
 # Get all books
@@ -41,7 +43,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "title": "The Hobbit 4",
+  "title": "The Hobbit 5",
   "author": "J.R.R. Tolkien",
   "publishedYear": 1938
 }
@@ -49,6 +51,7 @@ Content-Type: application/json
 ####################################
 # Delete book
 ####################################
-DELETE  http://127.0.0.1:3000/api/books/6
+DELETE  http://127.0.0.1:3000/api/books/11
+Authorization: Bearer {{token}}
 
 

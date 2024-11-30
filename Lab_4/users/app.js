@@ -75,7 +75,7 @@ app.post('/api/login', async (req, res) => {
 				SECRET_KEY,
 				{ expiresIn: '1h' }
 			);
-			res.status(200).json(token);
+			res.status(200).json({ token });
 		} else {
 			res.status(401).send('Unauthorized');
 		}

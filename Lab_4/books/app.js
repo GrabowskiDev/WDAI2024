@@ -86,9 +86,8 @@ app.get('/api/books/:id', async (req, res) => {
 //Add book
 app.post('/api/books', verifyToken, async (req, res) => {
 	try {
-		// req.status(201).send(req.body);
 		const book = await Book.create(req.body);
-		res.status(201).json(req.email);
+		res.status(201).json(book.id);
 	} catch (error) {
 		res.status(500).send('Internal Server Error');
 	}
@@ -103,7 +102,7 @@ app.delete('/api/books/:id', verifyToken, async (req, res) => {
 			},
 		});
 		if (deleted) {
-			res.status(200).send('Book deleted');
+			res.status(200).send(req.params.id);
 		} else {
 			res.status(404).send('Book not found');
 		}
