@@ -2,7 +2,7 @@ const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = 3001;
-const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'NotSoSecretKey123';
 
@@ -39,10 +39,6 @@ const User = sequelize.define(
 
 sequelize.sync();
 
-function hashPassword(password) {
-	return crypto.createHash('sha256').update(password).digest('hex');
-}
-
 app.listen(PORT, () => {
 	console.log(`it's alive on http://localhost:${PORT}`);
 });
@@ -50,9 +46,10 @@ app.listen(PORT, () => {
 // Register
 app.post('/api/register', async (req, res) => {
 	try {
+		hashedPassword = await bcrypt.hash(req.body.password, 10);
 		const user = await User.create({
 			...req.body,
-			password: hashPassword(req.body.password),
+			password: hashedPassword,
 		});
 		res.status(201).json(user.id);
 	} catch (error) {
@@ -66,10 +63,13 @@ app.post('/api/login', async (req, res) => {
 		const user = await User.findOne({
 			where: {
 				email: req.body.email,
-				password: hashPassword(req.body.password),
 			},
 		});
-		if (user) {
+		isPasswordCorrect = await bcrypt.compare(
+			req.body.password,
+			user.password
+		);
+		if (user && isPasswordCorrect) {
 			const token = jwt.sign(
 				{ id: user.id, email: user.email },
 				SECRET_KEY,

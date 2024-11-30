@@ -1,5 +1,5 @@
 @id=2
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTk2Njc2LCJleHAiOjE3MzMwMDAyNzZ9.Bko_7gJqd0YBldyBMcyJW_xRkPeNxWzhbn37jXurPek
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzMyOTk4NDE4LCJleHAiOjE3MzMwMDIwMTh9.rrlYpm3qkbHXc4riOF6738_s2kuacSj3GFHw2vN3yV8
 
 ####################################
 # Register user
@@ -8,7 +8,7 @@ POST http://127.0.0.1:3001/api/register
 Content-Type: application/json
 
 {
-	"email": "test20@test.com",
+	"email": "test@test.com",
 	"password": "admin"
 }
 
@@ -19,7 +19,7 @@ POST http://127.0.0.1:3001/api/login
 Content-Type: application/json
 
 {
-	"email": "test20@test.com",
+	"email": "test@test.com",
 	"password": "admin"
 }
 
@@ -41,7 +41,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "title": "The Hobbit 3",
+  "title": "The Hobbit 4",
   "author": "J.R.R. Tolkien",
   "publishedYear": 1938
 }
