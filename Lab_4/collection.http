@@ -74,7 +74,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-	"bookId": 10,
+	"bookId": 2,
 	"count": 1
 }
 

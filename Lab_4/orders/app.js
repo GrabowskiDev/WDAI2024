@@ -83,7 +83,7 @@ app.post('/api/orders', verifyToken, async (req, res) => {
 		const bookExists = await fetch(
 			`http://localhost:3000/api/books/${req.body.bookId}`
 		);
-		if (bookExists.status === 404) {
+		if (!bookExists.ok) {
 			return res.status(404).send('Book not found');
 		}
 
@@ -122,7 +122,7 @@ app.patch('/api/orders/:id', verifyToken, async (req, res) => {
 		const bookExists = await fetch(
 			`http://localhost:3000/api/books/${req.body.bookId}`
 		);
-		if (bookExists.status === 404) {
+		if (!bookExists.ok) {
 			return res.status(404).send('Book not found');
 		}
 
