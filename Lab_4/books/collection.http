@@ -1,0 +1,24 @@
+@id=2
+
+####################################
+# Get all books
+####################################
+GET http://127.0.0.1:3000/api/books
+
+
+####################################
+# Add book
+####################################
+POST http://127.0.0.1:3000/api/books
+Content-Type: application/json
+
+{
+    "title": "Adding next 6",
+    "author": "Some content here",
+		"publishedYear": 2021
+}
+
+####################################
+# Delete book
+####################################
+DELETE  http://127.0.0.1:3000/api/books/6
