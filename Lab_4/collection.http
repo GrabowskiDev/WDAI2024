@@ -11,7 +11,7 @@ POST http://127.0.0.1:3001/api/register
 Content-Type: application/json
 
 {
-	"email": "test2@test.com",
+	"email": "test211@test.com",
 	"password": "admin"
 }
 
@@ -37,7 +37,7 @@ GET http://127.0.0.1:3000/api/books
 ####################################
 # Get book with id
 ####################################
-GET http://127.0.0.1:3000/api/books/33
+GET http://127.0.0.1:3000/api/books/2
 
 ####################################
 # Add book
@@ -55,7 +55,7 @@ Content-Type: application/json
 ####################################
 # Delete book
 ####################################
-DELETE  http://127.0.0.1:3000/api/books/11
+DELETE  http://127.0.0.1:3000/api/books/15
 Authorization: Bearer {{token}}
 
 

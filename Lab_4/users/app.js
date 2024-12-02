@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = 3001;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'NotSoSecretKey123';
 
 app.use(express.json());
 
@@ -46,9 +46,14 @@ app.listen(PORT, () => {
 // Register
 app.post('/api/register', async (req, res) => {
 	try {
-		hashedPassword = await bcrypt.hash(req.body.password, 10);
+		const { email, password } = req.body;
+		const userExists = await User.findOne({ where: { email } });
+		if (userExists) {
+			return res.status(400).send('User already exists');
+		}
+		hashedPassword = await bcrypt.hash(password, 10);
 		const user = await User.create({
-			...req.body,
+			email,
 			password: hashedPassword,
 		});
 		res.status(201).json(user.id);
@@ -72,7 +77,7 @@ app.post('/api/login', async (req, res) => {
 		if (user && isPasswordCorrect) {
 			const token = jwt.sign(
 				{ id: user.id, email: user.email },
-				SECRET_KEY,
+				process.env.SECRET_KEY,
 				{ expiresIn: '1h' }
 			);
 			res.status(200).json({ token, id: user.id });

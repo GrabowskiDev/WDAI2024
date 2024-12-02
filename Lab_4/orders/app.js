@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = 3002;
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'NotSoSecretKey123';
 
 app.use(express.json());
 
@@ -50,7 +50,7 @@ function verifyToken(req, res, next) {
 	if (!token)
 		return res.status(403).json('A token is required for authentication');
 	try {
-		const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY);
+		const decoded = jwt.verify(token.split(' ')[1], process.env.SECRET_KEY);
 		req.userId = decoded.id;
 		req.email = decoded.email;
 		next();
