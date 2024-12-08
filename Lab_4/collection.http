@@ -11,8 +11,8 @@ POST http://127.0.0.1:3001/api/register
 Content-Type: application/json
 
 {
-	"email": "test211@test.com",
-	"password": "admin"
+	"email": "admin@corporation.com",
+	"password": "password"
 }
 
 ####################################
@@ -23,8 +23,8 @@ POST http://127.0.0.1:3001/api/login
 Content-Type: application/json
 
 {
-	"email": "test2@test.com",
-	"password": "admin"
+	"email": "admin@corporation.com",
+	"password": "password"
 }
 
 
@@ -47,9 +47,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "title": "The Hobbit 5",
-  "author": "J.R.R. Tolkien",
-  "publishedYear": 1938
+  "title": "One Million Digits Of Pi",
+  "author": "Socrates Co.",
+  "publishedYear": 2020
 }
 
 ####################################
@@ -75,19 +75,19 @@ Content-Type: application/json
 
 {
 	"bookId": 2,
-	"count": 1
+	"count": 1000000
 }
 
 ####################################
 # Delete order
 ####################################
-DELETE http://127.0.0.1:3002/api/orders/6
+DELETE http://127.0.0.1:3002/api/orders/1
 Authorization: Bearer {{token}}
 
 ####################################
 # Patch order
 ####################################
-PATCH http://127.0.0.1:3002/api/orders/7
+PATCH http://127.0.0.1:3002/api/orders/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
