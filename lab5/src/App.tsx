@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import Koszyk from './components/koszyk/Koszyk';
 import NowyKoszyk from './components/koszyk/NowyKoszyk';
@@ -9,6 +7,8 @@ import NowyLicznik from './components/liczniki/NowyLicznik';
 import Formularz from './components/formularze/Formularz';
 import Haslo from './components/formularze/Haslo';
 import Logowanie from './components/formularze/Logowanie';
+import Ternary from './components/inne/Ternary';
+import Aktualizacja from './components/inne/Aktualizacja';
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -22,6 +22,8 @@ function App() {
 			<Formularz />
 			<Haslo />
 			<Logowanie />
+			<Ternary />
+			<Aktualizacja />
 		</>
 	);
 }
