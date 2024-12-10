@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Dodawanie from './Dodawanie';
 
-function Studenci() {
+function StudentManager() {
 	interface Student {
 		imie: string;
 		nazwisko: string;
@@ -41,8 +41,8 @@ function Studenci() {
 					</tr>
 				</thead>
 				<tbody>
-					{students.map(student => (
-						<tr>
+					{students.map((student, index) => (
+						<tr key={index}>
 							<td>{student.imie}</td>
 							<td>{student.nazwisko}</td>
 							<td>{student.rocznik}</td>
@@ -55,4 +55,4 @@ function Studenci() {
 	);
 }
 
-export default Studenci;
+export default StudentManager;

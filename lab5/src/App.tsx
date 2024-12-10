@@ -10,6 +10,9 @@ import Ternary from './components/inne/Ternary';
 import Aktualizacja from './components/inne/Aktualizacja';
 import Studenci from './components/studenci/Studenci';
 import StudentManager from './components/studenci/StudentManager';
+import Licznik2 from './components/efekty/Licznik2';
+import Tytul from './components/efekty/Tytul';
+import Odliczanie from './components/efekty/Odliczanie';
 
 function App() {
 	return (
@@ -25,6 +28,9 @@ function App() {
 			<Aktualizacja />
 			<Studenci />
 			<StudentManager />
+			<Licznik2 />
+			<Tytul />
+			<Odliczanie />
 		</>
 	);
 }

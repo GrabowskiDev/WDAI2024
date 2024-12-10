@@ -12,8 +12,8 @@ function NowyKoszyk() {
 	return (
 		<div style={{ backgroundColor: 'blue' }}>
 			<h1>Nowy Koszyk</h1>
-			{produkty.map(produkt => (
-				<Produkt name={produkt} />
+			{produkty.map((produkt, index) => (
+				<Produkt key={index} name={produkt} />
 			))}
 		</div>
 	);

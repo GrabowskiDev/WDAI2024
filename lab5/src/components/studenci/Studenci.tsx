@@ -33,8 +33,8 @@ function Studenci() {
 				</tr>
 			</thead>
 			<tbody>
-				{Students.map(student => (
-					<tr>
+				{Students.map((student, index) => (
+					<tr key={index}>
 						<td>{student.imie}</td>
 						<td>{student.nazwisko}</td>
 						<td>{student.rocznik}</td>
