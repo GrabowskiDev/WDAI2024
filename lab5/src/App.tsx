@@ -15,6 +15,7 @@ import Tytul from './components/efekty/Tytul';
 import Odliczanie from './components/efekty/Odliczanie';
 import Komentarz from './components/produkty/Komentarz';
 import Komentarze from './components/produkty/Komentarze';
+import Licznik8 from './components/liczniki/Licznik8';
 
 function App() {
 	let sampleUser = { id: 1, username: 'johndoe', fullName: 'John Doe' };
@@ -43,6 +44,7 @@ function App() {
 				user={sampleUser}
 			/>
 			<Komentarze />
+			<Licznik8 />
 		</>
 	);
 }
