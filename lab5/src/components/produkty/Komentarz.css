@@ -1,0 +1,52 @@
+.comment {
+	background-color: #333;
+	padding: 16px;
+	border-radius: 8px;
+}
+
+.user {
+	display: flex;
+	gap: 16px;
+	justify-content: space-between;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1px;
+}
+
+.info p {
+	margin: 0;
+}
+
+.info-user {
+	flex-direction: row;
+	gap: 16px;
+}
+
+.comment-body {
+	background-color: #444;
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.likes {
+	text-align: left;
+}
+
+.likes-container {
+	display: flex;
+	justify-content: left;
+	gap: 16px;
+	align-items: center;
+}
+
+.likes-container button {
+	transition: all 0.15s;
+}
+
+.likes-container button:active {
+	scale: 0.9;
+}

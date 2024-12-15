@@ -13,8 +13,12 @@ import StudentManager from './components/studenci/StudentManager';
 import Licznik2 from './components/efekty/Licznik2';
 import Tytul from './components/efekty/Tytul';
 import Odliczanie from './components/efekty/Odliczanie';
+import Komentarz from './components/produkty/Komentarz';
+import Komentarze from './components/produkty/Komentarze';
 
 function App() {
+	let sampleUser = { id: 1, username: 'johndoe', fullName: 'John Doe' };
+
 	return (
 		<>
 			<Koszyk />
@@ -31,6 +35,14 @@ function App() {
 			<Licznik2 />
 			<Tytul />
 			<Odliczanie />
+			<Komentarz
+				id={1}
+				body="bardzo fajny komentarz"
+				postId={2}
+				likes={12}
+				user={sampleUser}
+			/>
+			<Komentarze />
 		</>
 	);
 }
