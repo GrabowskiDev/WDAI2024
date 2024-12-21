@@ -1,14 +1,25 @@
-import { Article } from '../interfaces/Article';
+import { ArticleInterface } from '../interfaces/ArticleInterface';
 
-const articles: Article[] = [
-	{ id: 1, title: 'Article 1', content: 'Content of Article 1' },
-	{ id: 2, title: 'Article 2', content: 'Content of Article 2' },
-	// Add more articles as needed
-];
+const LOCAL_STORAGE_KEY = 'articles';
 
-function addArticle(article: Article) {
-	articles.push(article);
+const loadArticles = (): ArticleInterface[] => {
+	const storedArticles = localStorage.getItem(LOCAL_STORAGE_KEY);
+	return storedArticles ? JSON.parse(storedArticles) : [];
+};
+
+const saveArticles = (articles: ArticleInterface[]) => {
+	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(articles));
+};
+
+const articles: ArticleInterface[] = loadArticles();
+
+function addArticle(title: string, content: string) {
+	const newId =
+		articles.length > 0 ? articles[articles.length - 1].id + 1 : 1;
+	const newArticle: ArticleInterface = { id: newId, title, content };
+	articles.push(newArticle);
+	saveArticles(articles);
 }
 
-export { articles, addArticle };
+export { articles, addArticle, loadArticles, saveArticles };
 export default articles;
