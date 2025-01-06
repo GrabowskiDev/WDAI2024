@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import articles from '../data/articles';
+import { CSSProperties } from 'react';
 
 interface Params extends Record<string, string | undefined> {
 	id: string;
@@ -13,11 +14,32 @@ function Article() {
 		return <h2>Article with id {id} not found</h2>;
 	}
 
+	const articleStyle: CSSProperties = {
+		backgroundColor: '#444',
+		width: '500px',
+		padding: '20px',
+		margin: '20px auto',
+		borderRadius: '10px',
+		overflowWrap: 'break-word',
+	};
+
+	const headerStyle: CSSProperties = {
+		display: 'flex',
+		justifyContent: 'space-between',
+		marginBottom: '20px',
+	};
+
+	const contentStyle: CSSProperties = {
+		textAlign: 'left',
+	};
+
 	return (
-		<div>
-			<h2>{article.title}</h2>
-			<p>Article number {id}</p>
-			<p>{article.content}</p>
+		<div style={articleStyle}>
+			<div style={headerStyle}>
+				<h2>{article.title}</h2>
+				<p>ID:{id}</p>
+			</div>
+			<p style={contentStyle}>{article.content}</p>
 		</div>
 	);
 }
