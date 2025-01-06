@@ -1,0 +1,22 @@
+.input-div {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+	font-size: 16px;
+}
+
+.add-input {
+	width: 400px;
+	font-size: 16px;
+}
+
+textarea.add-input {
+	min-height: 200px;
+}
+
+.add-button {
+	color: white;
+}
