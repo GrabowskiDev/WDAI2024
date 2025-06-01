@@ -1,0 +1,17 @@
+.blog-h1 {
+	margin-bottom: 20px;
+}
+
+.blog-h2 {
+	margin-bottom: 10px;
+}
+
+.blogs {
+	display: flex;
+	list-style: circle;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	gap: 5px;
+}

@@ -1,0 +1,38 @@
+@keyframes pop {
+	0% {
+		transform: scale(1);
+	}
+	80% {
+		transform: scale(1);
+	}
+	90% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+.square,
+.circle,
+.rectangle {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	display: inline-block;
+	animation: pop 2.5s;
+}
+
+.square {
+	background-color: red;
+}
+
+.circle {
+	background-color: blue;
+	border-radius: 50%;
+}
+
+.rectangle {
+	background-color: green;
+	width: 200px;
+	height: 100px;
+}
